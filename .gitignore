@@ -1,0 +1,9 @@
+out/
+.idea/
+logs/
+test/
+target/
+src/main/java/com/goit/console/
+*.iml
+*.ipr
+*.iws
