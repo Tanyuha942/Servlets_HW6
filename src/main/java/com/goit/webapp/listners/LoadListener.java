@@ -16,17 +16,11 @@ public class LoadListener implements ServletContextListener {
         servletContext.setAttribute("companyService", CompanyService.getInstance());
         servletContext.setAttribute("customerDao", CustomerService.getInstance());
         servletContext.setAttribute("customerService", CustomerService.getInstance());
-        servletContext.setAttribute("developerService", new DeveloperService());
-        servletContext.setAttribute("sumProjectSalaryDao", SumProjectSalaryService.getInstance());
-        servletContext.setAttribute("sumProjectSalaryService", SumProjectSalaryService.getInstance());
-        servletContext.setAttribute("projectDeveloperDao", ProjectDeveloperService.getInstance());
-        servletContext.setAttribute("projectDeveloperService", ProjectDeveloperService.getInstance());
+        servletContext.setAttribute("developerDao", DeveloperService.getInstance());
+        servletContext.setAttribute("developerService", DeveloperService.getInstance());
         servletContext.setAttribute("projectDao", ProjectService.getInstance());
         servletContext.setAttribute("projectService", ProjectService.getInstance());
         servletContext.setAttribute("skillDao", SkillService.getInstance());
         servletContext.setAttribute("skillService", SkillService.getInstance());
-        servletContext.setAttribute("javaDeveloperService", new JavaDeveloperService());
-        servletContext.setAttribute("middleDeveloperService", new MiddleDeveloperService());
-        servletContext.setAttribute("projectInfoService", new ProjectInfoService());
     }
 }

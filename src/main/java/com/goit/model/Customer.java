@@ -2,7 +2,7 @@ package com.goit.model;
 
 import com.goit.dao.dao_tables_interfaces.Identity;
 
-public class Customer implements Identity {
+public class Customer implements Identity, IObjectToString {
 
   private Long id;
   private String name;
@@ -26,9 +26,6 @@ public class Customer implements Identity {
 
   @Override
   public String toString() {
-    return "Customer{" +
-        "id=" + id +
-        ", name='" + name + '\'' +
-        '}';
+    return jsonObjectString().toJson(this);
   }
 }

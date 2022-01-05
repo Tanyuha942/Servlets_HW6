@@ -7,7 +7,6 @@ import java.util.Properties;
 public class DataSourceHolder {
 
     private static DataSourceHolder value;
-
     private final DataSource dataSource;
 
     private DataSourceHolder() {

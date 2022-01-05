@@ -1,9 +1,14 @@
 package com.goit.dao;
 
+import com.goit.model.Developer;
 import com.goit.model.Project;
+
+import java.math.BigDecimal;
 import java.sql.*;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.Optional;
+import java.util.*;
+
 import org.apache.logging.log4j.*;
 
 public class ProjectDao extends AbstractDao<Project> {
@@ -67,5 +72,54 @@ public class ProjectDao extends AbstractDao<Project> {
       ps.setLong(4, project.getId());
     });
     LOGGER.info("Record was updated");
+  }
+
+  public String getProjectName(Project project) {
+    return project.getName();
+  }
+
+  public Map<String, BigDecimal> getSumProjectSalary(String name) {
+    Map<String, BigDecimal> resultList = new HashMap<>();
+    ResultSet resultSet = null;
+    String sql = "select p.project_name, sum(d.salary) as sum_salary " +
+            "from developer_project dp " +
+            "join developers d on d.id = dp.developer_id " +
+            "join projects p on p.id = dp.project_id " +
+            "where p.project_name = ? " +
+            "group by p.project_name";
+    try {
+      resultSet = DbHelper.getWithPreparedStatement(
+              sql, ps -> {
+                ps.setString(1, name);
+              });
+      while (resultSet.next()) {
+        resultList.put(resultSet.getObject(1, String.class),
+                resultSet.getObject(2, BigDecimal.class));
+      }
+    } catch (SQLException e) {
+      LOGGER.error("Get sumProjectSalary exception", e);
+    }
+    return resultList;
+  }
+
+  public List<String> getProjectInfo() {
+    List<String> resultList = new ArrayList<>();
+    ResultSet resultSet = null;
+    String sql = "select p.created || ' - ' || p.project_name || ' - ' || count(d.id) as project_info  " +
+            " from projects p " +
+            " join developer_project dp on dp.project_id = p.id " +
+            " join developers d on d.id = dp.developer_id " +
+            " group by p.created, p.project_name ";
+    try {
+      resultSet = DbHelper.getWithPreparedStatement(
+              sql, ps -> {
+              });
+      while (resultSet.next()) {
+        resultList.add(resultSet.getObject(1, String.class));
+      }
+    } catch (SQLException e) {
+      LOGGER.error("Get projectInfo exception", e);
+    }
+    return resultList;
   }
 }

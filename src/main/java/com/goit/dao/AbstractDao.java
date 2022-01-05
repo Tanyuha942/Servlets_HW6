@@ -1,16 +1,9 @@
 package com.goit.dao;
 
-import com.goit.dao.dao_tables_interfaces.Identity;
-import java.text.ParseException;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import com.goit.dao.dao_tables_interfaces.Dao;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import com.goit.dao.dao_tables_interfaces.*;
+import org.apache.logging.log4j.*;
+import java.sql.*;
+import java.util.*;
 
 abstract public class AbstractDao<T extends Identity> implements Dao<T> {
 

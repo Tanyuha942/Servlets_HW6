@@ -2,7 +2,7 @@ package com.goit.model;
 
 import com.goit.dao.dao_tables_interfaces.Identity;
 
-public class Skill implements Identity {
+public class Skill implements Identity, IObjectToString {
 
   private Long id;
   private String industry;
@@ -35,10 +35,6 @@ public class Skill implements Identity {
 
   @Override
   public String toString() {
-    return "Skill{" +
-        "id=" + id +
-        ", industry='" + industry + '\'' +
-        ", level='" + level + '\'' +
-        '}';
+    return jsonObjectString().toJson(this);
   }
 }

@@ -3,7 +3,7 @@ package com.goit.model;
 import com.goit.dao.dao_tables_interfaces.Identity;
 import java.util.Date;
 
-public class Project implements Identity {
+public class Project implements Identity, IObjectToString {
 
   private Long id;
   private String name;
@@ -45,11 +45,6 @@ public class Project implements Identity {
 
   @Override
   public String toString() {
-    return "Project{" +
-        "id=" + id +
-        ", name='" + name + '\'' +
-        ", created=" + created +
-        ", cost=" + cost +
-        '}';
+    return jsonObjectString().toJson(this);
   }
 }

@@ -3,7 +3,7 @@ package com.goit.model;
 import com.goit.dao.dao_tables_interfaces.Identity;
 import java.util.Date;
 
-public class Developer implements Identity {
+public class Developer implements Identity, IObjectToString {
 //  SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
   private Long id;
@@ -88,4 +88,8 @@ public class Developer implements Identity {
     this.salary = salary;
   }
 
+  @Override
+  public String toString() {
+    return jsonObjectString().toJson(this);
+  }
 }
